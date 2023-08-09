@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DashboardApp.Views.SignupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Signup"
+    BackgroundColor="WhiteSmoke">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="20">
+                <Entry
+                    FontSize="18"
+                    Placeholder="Name"
+                    Text="{Binding Name}"
+                    TextColor="Black" />
+                <Entry
+                    FontSize="18"
+                    Placeholder="Surname"
+                    Text="{Binding Surname}"
+                    TextColor="Black" />
+                <Entry
+                    FontSize="18"
+                    Placeholder="Email"
+                    Text="{Binding Email}"
+                    TextColor="Black" />
+                <Entry
+                    FontSize="18"
+                    Placeholder="Login"
+                    Text="{Binding Login}"
+                    TextColor="Black" />
+                <Entry
+                    FontSize="18"
+                    IsPassword="True"
+                    Placeholder="Password"
+                    Text="{Binding Password}"
+                    TextColor="Black" />
+                <Entry
+                    FontSize="18"
+                    IsPassword="True"
+                    Placeholder="Confirm Password"
+                    Text="{Binding ConfirmPassword}"
+                    TextColor="Black" />
+
+                <Button
+                    Margin="0,20"
+                    Command="{Binding SignupCommand}"
+                    CornerRadius="10"
+                    Text="Signup"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
