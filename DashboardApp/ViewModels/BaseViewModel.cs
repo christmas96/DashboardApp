@@ -10,7 +10,10 @@ namespace DashboardApp.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         private IUserService _userService;
+        private IAPIService _apiService;
+
         protected IUserService UserService => _userService ??= DependencyService.Resolve<IUserService>();
+        protected IAPIService ApiService => _apiService ??= DependencyService.Resolve<IAPIService>();
 
 
         bool isBusy = false;

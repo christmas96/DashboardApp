@@ -1,5 +1,6 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using DashboardApp.Models;
+using DashboardApp.Models.Requests;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -11,7 +12,6 @@ namespace DashboardApp.ViewModels
         private string _name;
         private string _surName;
         private string _email;
-        private string _login;
         private string _password;
         private string _confirmPassword;
         #endregion
@@ -31,11 +31,6 @@ namespace DashboardApp.ViewModels
         {
             get => _email;
             set => SetProperty(ref _email, value);
-        }
-        public string Login
-        {
-            get => _login;
-            set => SetProperty(ref _login, value);
         }
         public string Password
         {
@@ -74,18 +69,18 @@ namespace DashboardApp.ViewModels
                 return;
             }
 
-            var newUser = new User
+            var newUser = new SignupRequest
             {
                 Password = Password,
-                Login = Login,
                 Email = Email,
-                Name = Name,
-                Surname = Surname
+                FirstName = Name,
+                LastName = Surname
             };
 
-            UserService.AddUser(newUser);
+            var result = await ApiService.SignupAsync(newUser);
 
-            await App.Current.MainPage.Navigation.PopAsync();
+            if (result.Status == "success" && result.Data != null)
+                await App.Current.MainPage.Navigation.PopAsync();
         }
     }
 }

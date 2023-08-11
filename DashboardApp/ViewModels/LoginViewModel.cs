@@ -1,4 +1,5 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
+using DashboardApp.Models.Requests;
 using DashboardApp.Services.Interfaces;
 using DashboardApp.Views;
 using System;
@@ -53,14 +54,22 @@ namespace DashboardApp.ViewModels
             await App.Current.MainPage.Navigation.PushAsync(new SignupPage());
         }
 
-        private void OnLogin()
+        private async void OnLogin()
         {
             try
             {
-                var exists = UserService.CheckIfExists(Login, Password);
-
-                if (exists)
+                var login = new LoginRequest
                 {
+                    DeviceName = Device.RuntimePlatform == Device.Android ? nameof(Device.Android) : nameof(Device.iOS),
+                    Email = Login,
+                    Password = Password
+                };
+
+                var result = await ApiService.LoginAsync(login);
+
+                if (result.Status == "success" && !string.IsNullOrEmpty(result.Data?.Token))
+                {
+                    ApiService.SaveToken(result.Data.Token);
                     App.Current.MainPage = new AppShell();
                 }
                 else

@@ -13,6 +13,7 @@ namespace DashboardApp
             InitializeComponent();
 
             DependencyService.Register<IUserService, UserService>();
+            DependencyService.Register<IAPIService, APIService>();
 
             DependencyService.Register<LoginViewModel>();
             DependencyService.Register<SignupViewModel>();

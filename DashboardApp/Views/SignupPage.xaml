@@ -25,11 +25,6 @@
                     TextColor="Black" />
                 <Entry
                     FontSize="18"
-                    Placeholder="Login"
-                    Text="{Binding Login}"
-                    TextColor="Black" />
-                <Entry
-                    FontSize="18"
                     IsPassword="True"
                     Placeholder="Password"
                     Text="{Binding Password}"
